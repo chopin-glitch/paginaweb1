@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensaje Interactivo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            position: relative;
+        }
+        h1 {
+            font-size: 5rem;
+            color: #fff;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .floating-text {
+            position: absolute;
+            font-size: 2rem;
+            color: cyan;
+            font-weight: bold;
+            animation: float 3s ease-in-out forwards;
+        }
+        .footer-text {
+            position: absolute;
+            bottom: 10px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.3); /* Blanco al 30% de opacidad */
+            text-align: center;
+            width: 100%;
+        }
+        @keyframes float {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>PENDEJO EL QUE LO LEA</h1>
+    <script>
+        document.body.addEventListener("click", function(event) {
+            // Generar 5 textos "JAJAJA" en posiciones aleatorias
+            for (let i = 0; i < 5; i++) {
+                const text = document.createElement("div");
+                text.classList.add("floating-text");
+                text.textContent = "JAJAJA";
+
+                // Generar posición aleatoria dentro de la pantalla
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+
+                text.style.left = `${x}px`;
+                text.style.top = `${y}px`;
+
+                // Agregar el texto al cuerpo
+                document.body.appendChild(text);
+
+                // Eliminar el texto después de que termine la animación
+                setTimeout(() => {
+                    text.remove();
+                }, 3000);
+            }
+        });
+    </script>
+    <div class="footer-text">COMPRA EN CDPRINTSHOP</div>
+</body>
+</html>
